@@ -30,12 +30,7 @@ def test_validate_name():
 
 def test_validate_url():
     with pytest.raises(ValueError):
-        Vacancy("Администратор", "some_url", 70000, 60000, "Москва")
-
-
-def test_validate_salary():
-    with pytest.raises(ValueError):
-        Vacancy("Администратор", "", 50000, 60000, "Москва")
+        Vacancy("Администратор", "", 70000, 80000, "Москва")
 
 
 def test_validate_salary_from_under_zero():

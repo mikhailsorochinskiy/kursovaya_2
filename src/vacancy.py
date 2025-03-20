@@ -14,8 +14,6 @@ class Vacancy:
             raise ValueError("Название вакансии и URL обязательны.")
         if self.salary_from < 0 or self.salary_to < 0:
             raise ValueError("Зарплата не может быть меньше 0.")
-        if self.salary_from > self.salary_to:
-            raise ValueError("Минимальная зарплата не может быть больше максимальной.")
 
     def __str__(self):
         return f"Вакансия: {self.name}, Зарплата {self.salary_from}-{self.salary_to}, город: {self.city}"
@@ -39,3 +37,12 @@ class Vacancy:
             )
             vacancies_list.append(current_vacancy)
         return vacancies_list
+
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "url": self.alternate_url,
+            "salary_from": self.salary_from,
+            "salary_to": self.salary_to,
+            "description": self.city,
+        }

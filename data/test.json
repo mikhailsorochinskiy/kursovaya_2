@@ -1,0 +1,9 @@
+[
+    {
+        "name": "Администратор",
+        "url": "some_url",
+        "salary_from": 50000,
+        "salary_to": 60000,
+        "description": "Москва"
+    }
+]
