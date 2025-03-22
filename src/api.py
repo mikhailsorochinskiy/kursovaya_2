@@ -26,12 +26,14 @@ class HH(Parser):
         self.vacancies = []
 
     def connect_api(self):
+        """ Метод, отправляющий get-запрос и возвращающий объект response"""
         response = requests.get(self.__url, headers=self.__headers, params=self._params)
         if response.status_code != 200:
             raise ConnectionError
         return response
 
     def load_vacancies(self, keyword: str):
+        """ Метод, который забирает вакансии с объекта response и добавляет их в атрибут vacancies"""
         self._params['text'] = keyword
         self._params['per_page'] = 20
         while self._params.get('page') != 20:
