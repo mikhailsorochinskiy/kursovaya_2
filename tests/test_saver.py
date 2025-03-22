@@ -38,7 +38,7 @@ def test_get_from_file_not_found(capsys):
     json_saver = JSONSaver("invalid_file")
     json_saver._get_from_file()
     message = capsys.readouterr()
-    assert message.out.strip() == "Файл не найден"
+    assert message.out.strip() == "Файл не найден или еще не создан"
 
 
 def test_add_get_del_vacancy():

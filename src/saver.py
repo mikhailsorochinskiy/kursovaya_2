@@ -39,7 +39,8 @@ class JSONSaver(Saver):
             with open(self.__file_path, 'r', encoding='utf-8') as f:
                 result = json.load(f)
         except FileNotFoundError:
-            print('Файл не найден')
+            print('Файл не найден или еще не создан')
+            return []
         except JSONDecodeError:
             return []
         else:
@@ -47,7 +48,11 @@ class JSONSaver(Saver):
 
     def add_vacancy(self, vacancies):
         vacancies_json = self._get_from_file()
-        vacancies_list_dict = [vacancy.to_dict() for vacancy in vacancies if vacancy.to_dict() not in vacancies_json]
+        if len(vacancies_json) != 0:
+            vacancies_list_dict = [vacancy.to_dict() for vacancy in vacancies if
+                                   vacancy.to_dict() not in vacancies_json]
+        else:
+            vacancies_list_dict = [vacancy.to_dict() for vacancy in vacancies]
         self._write_to_file(vacancies_json + vacancies_list_dict)
 
     def get_vacancy(self, pattern):
